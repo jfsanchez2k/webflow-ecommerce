@@ -2,7 +2,7 @@
 [file content begin]  
 # Implementation Guide: Agilpay Gateway Integration in Webflow  
 
-**Author:** Manus AI  
+**Author:** Javier Sanchez
 **Date:** July 15, 2025  
 **Version:** 1.0  
 
@@ -1079,7 +1079,7 @@ Product loading errors may indicate backend API issues.
 
 **Note:** This documentation is based on specifications and examples provided by Agilisa Technologies. For production credentials and additional technical support, contact the Agilpay team directly.  
 
-**Author:** Manus AI  
+**Author:** Javier Sanchez  
 **Last Updated:** July 15, 2025  
 **Document Version:** 1.0  
 [file content end]
