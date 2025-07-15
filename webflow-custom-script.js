@@ -7,7 +7,7 @@ Copiar este código en la sección "Custom Code" > "Before </body> tag" de Webfl
 // Configuración de la aplicación
 const CONFIG = {
     // IMPORTANTE: Actualizar esta URL con la URL real de tu backend
-    BACKEND_URL: 'https://tu-backend.herokuapp.com', // Cambiar por tu URL real
+    BACKEND_URL: 'http://localhost:5000', // URL del backend local para desarrollo
     API_ENDPOINTS: {
         PRODUCTS: '/api/agilpay/products',
         CREATE_PAYMENT: '/api/agilpay/create-payment'
@@ -42,9 +42,15 @@ async function loadProducts() {
             throw new Error(`Error HTTP: ${response.status}`);
         }
         
-        products = await response.json();
-        console.log('Productos cargados:', products.length);
-        renderProducts();
+        const responseData = await response.json();
+        
+        if (responseData.success) {
+            products = responseData.data;
+            console.log('Productos cargados:', products.length);
+            renderProducts();
+        } else {
+            throw new Error(responseData.error || 'Error desconocido del servidor');
+        }
         
     } catch (error) {
         console.error('Error cargando productos:', error);

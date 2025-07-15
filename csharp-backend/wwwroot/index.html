@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agilpay Backend - C#</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .api-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .endpoint {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .get { background-color: #28a745; }
+        .post { background-color: #007bff; }
+        .put { background-color: #ffc107; color: black; }
+        .delete { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Agilpay Backend - C# ASP.NET Core</h1>
+        <p>Backend equivalente desarrollado en C# para integración con Agilpay</p>
+    </div>
+
+    <div class="api-section">
+        <h2>📦 Endpoints de Productos</h2>
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <code>/api/agilpay/products</code>
+            <p>Obtiene la lista de productos disponibles</p>
+        </div>
+    </div>
+
+    <div class="api-section">
+        <h2>💳 Endpoints de Pagos</h2>
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <code>/api/agilpay/create-payment</code>
+            <p>Crea una solicitud de pago con Agilpay</p>
+        </div>
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <code>/api/agilpay/payment-response</code>
+            <p>Maneja la respuesta de Agilpay después del pago</p>
+        </div>
+    </div>
+
+    <div class="api-section">
+        <h2>👥 Endpoints de Usuarios</h2>
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <code>/api/users</code>
+            <p>Obtiene todos los usuarios</p>
+        </div>
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <code>/api/users</code>
+            <p>Crea un nuevo usuario</p>
+        </div>
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <code>/api/users/{id}</code>
+            <p>Obtiene un usuario específico</p>
+        </div>
+        <div class="endpoint">
+            <span class="method put">PUT</span>
+            <code>/api/users/{id}</code>
+            <p>Actualiza un usuario existente</p>
+        </div>
+        <div class="endpoint">
+            <span class="method delete">DELETE</span>
+            <code>/api/users/{id}</code>
+            <p>Elimina un usuario</p>
+        </div>
+    </div>
+
+    <div class="api-section">
+        <h2>🔧 Tecnologías Utilizadas</h2>
+        <ul>
+            <li><strong>ASP.NET Core 8.0</strong> - Framework web</li>
+            <li><strong>Entity Framework Core</strong> - ORM para base de datos</li>
+            <li><strong>SQLite</strong> - Base de datos</li>
+            <li><strong>Swagger/OpenAPI</strong> - Documentación de API</li>
+            <li><strong>Newtonsoft.Json</strong> - Serialización JSON</li>
+        </ul>
+    </div>
+
+    <div class="api-section">
+        <h2>🚀 Cómo ejecutar</h2>
+        <ol>
+            <li>Asegúrate de tener .NET 8.0 SDK instalado</li>
+            <li>Navega al directorio del proyecto</li>
+            <li>Ejecuta: <code>dotnet restore</code></li>
+            <li>Ejecuta: <code>dotnet run</code></li>
+            <li>Accede a <code>https://localhost:5001</code> o <code>http://localhost:5000</code></li>
+            <li>Visita <code>/swagger</code> para la documentación interactiva de la API</li>
+        </ol>
+    </div>
+</body>
+</html>
