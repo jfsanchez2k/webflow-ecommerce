@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Webflow - Integración Agilpay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .products-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.25rem;
+        }
+
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: opacity 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cart-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: right;
+            margin-top: 1rem;
+            color: #667eea;
+        }
+
+        .checkout-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: opacity 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            opacity: 0.9;
+        }
+
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tienda Webflow</h1>
+            <p class="subtitle">Integración con Agilpay Gateway</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="products-section">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Los productos se cargarán dinámicamente -->
+            </div>
+        </section>
+
+        <section class="cart-section">
+            <h3 class="cart-title">Carrito de Compras</h3>
+            <div id="cart-items">
+                <p class="empty-cart">Tu carrito está vacío</p>
+            </div>
+            <div class="cart-total" id="cart-total" style="display: none;">
+                Total: $0.00
+            </div>
+        </section>
+
+        <section class="checkout-form" id="checkout-form" style="display: none;">
+            <h3 class="cart-title">Información de Facturación</h3>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label class="form-label" for="customer-name">Nombre Completo *</label>
+                    <input type="text" id="customer-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="customer-email">Correo Electrónico *</label>
+                    <input type="email" id="customer-email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="customer-address">Dirección *</label>
+                    <input type="text" id="customer-address" class="form-input" required>
+                </div>
+                <button type="submit" class="checkout-btn" id="checkout-btn">
+                    Proceder al Pago con Agilpay
+                </button>
+            </form>
+        </section>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Procesando tu pago...</p>
+        </div>
+    </main>
+
+    <!-- Formulario oculto para envío a Agilpay -->
+    <form id="agilpay-form" method="post" style="display: none;">
+    </form>
+
+    <script>
+        // Estado de la aplicación
+        let products = [];
+        let cart = [];
+
+        // Cargar productos al iniciar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+        });
+
+        // Cargar productos desde el backend
+        async function loadProducts() {
+            try {
+                const response = await fetch('/api/agilpay/products');
+                products = await response.json();
+                renderProducts();
+            } catch (error) {
+                console.error('Error cargando productos:', error);
+            }
+        }
+
+        // Renderizar productos
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <div class="quantity-controls">
+                            <button type="button" class="quantity-btn" onclick="changeQuantity(${product.id}, -1)">-</button>
+                            <input type="number" class="quantity-input" id="qty-${product.id}" value="1" min="1" max="10">
+                            <button type="button" class="quantity-btn" onclick="changeQuantity(${product.id}, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+        }
+
+        // Cambiar cantidad
+        function changeQuantity(productId, change) {
+            const input = document.getElementById(`qty-${productId}`);
+            let newValue = parseInt(input.value) + change;
+            if (newValue < 1) newValue = 1;
+            if (newValue > 10) newValue = 10;
+            input.value = newValue;
+        }
+
+        // Agregar al carrito
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const quantity = parseInt(document.getElementById(`qty-${productId}`).value);
+            
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    quantity: quantity
+                });
+            }
+            
+            renderCart();
+        }
+
+        // Renderizar carrito
+        function renderCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutForm = document.getElementById('checkout-form');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+                cartTotal.style.display = 'none';
+                checkoutForm.style.display = 'none';
+                return;
+            }
+
+            let total = 0;
+            cartItems.innerHTML = '';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        Cantidad: ${item.quantity} × $${item.price.toFixed(2)}
+                    </div>
+                    <div>
+                        $${itemTotal.toFixed(2)}
+                        <button onclick="removeFromCart(${item.id})" style="margin-left: 10px; color: red; background: none; border: none; cursor: pointer;">✕</button>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+
+            cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
+            cartTotal.style.display = 'block';
+            checkoutForm.style.display = 'block';
+        }
+
+        // Remover del carrito
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            renderCart();
+        }
+
+        // Manejar envío del formulario de pago
+        document.getElementById('payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+
+            const customerName = document.getElementById('customer-name').value;
+            const customerEmail = document.getElementById('customer-email').value;
+            const customerAddress = document.getElementById('customer-address').value;
+
+            if (!customerName || !customerEmail || !customerAddress) {
+                alert('Por favor completa todos los campos requeridos');
+                return;
+            }
+
+            // Mostrar loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('checkout-btn').disabled = true;
+
+            try {
+                // Preparar datos para el backend
+                const paymentData = {
+                    customer_name: customerName,
+                    customer_email: customerEmail,
+                    customer_address: customerAddress,
+                    items: cart.map(item => ({
+                        name: item.name,
+                        price: item.price,
+                        quantity: item.quantity
+                    })),
+                    success_url: window.location.origin + '/success',
+                    return_url: window.location.origin
+                };
+
+                // Enviar solicitud al backend
+                const response = await fetch('/api/agilpay/create-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(paymentData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Crear formulario para envío a Agilpay
+                    const form = document.getElementById('agilpay-form');
+                    form.action = result.payment_url;
+                    form.innerHTML = '';
+
+                    // Agregar campos del formulario
+                    Object.keys(result.payment_data).forEach(key => {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = result.payment_data[key];
+                        form.appendChild(input);
+                    });
+
+                    // Enviar formulario a Agilpay
+                    form.submit();
+                } else {
+                    throw new Error(result.error || 'Error desconocido');
+                }
+
+            } catch (error) {
+                console.error('Error procesando pago:', error);
+                alert('Error procesando el pago: ' + error.message);
+            } finally {
+                // Ocultar loading
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('checkout-btn').disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
+
