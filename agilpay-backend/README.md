@@ -14,7 +14,7 @@ Backend para integración con el sistema de pagos Agilpay, desarrollado con Flas
 
 ## 📁 Estructura del Proyecto
 
-``` charp
+```
 agilpay-backend/
 ├── src/
 │   ├── main.py              # Punto de entrada de la aplicación
@@ -34,16 +34,13 @@ agilpay-backend/
 ## 🔌 Endpoints de la API
 
 ### Productos
-
 - `GET /api/agilpay/products` - Obtiene la lista de productos
 
 ### Pagos con Agilpay
-
 - `POST /api/agilpay/create-payment` - Crea una solicitud de pago
 - `POST /api/agilpay/payment-response` - Maneja respuestas de Agilpay
 
 ### Gestión de Usuarios
-
 - `GET /api/users` - Lista todos los usuarios
 - `POST /api/users` - Crea un nuevo usuario
 - `GET /api/users/{id}` - Obtiene un usuario específico
@@ -54,14 +51,12 @@ agilpay-backend/
 
 ### Opción 1: Ejecución Rápida (Recomendada)
 
-#### Windows
-
+#### Windows:
 ```bash
 start.bat
 ```
 
-#### Linux/Mac
-
+#### Linux/Mac:
 ```bash
 chmod +x start.sh
 ./start.sh
@@ -70,47 +65,40 @@ chmod +x start.sh
 ### Opción 2: Instalación Manual
 
 #### Prerrequisitos
-
 - Python 3.8+ instalado
 - pip (incluido con Python)
 
 #### Pasos de instalación
 
 1. **Crear entorno virtual**
-
    ```bash
    python -m venv venv
    ```
 
 2. **Activar entorno virtual**
-
+   
    Windows:
-
    ```bash
    venv\Scripts\activate
    ```
-
+   
    Linux/Mac:
-
    ```bash
    source venv/bin/activate
    ```
 
 3. **Instalar dependencias**
-
    ```bash
    pip install -r requirements.txt
    ```
 
 4. **Configurar variables de entorno** (opcional)
-
    ```bash
    cp .env.example .env
    # Editar .env con tus configuraciones
    ```
 
 5. **Ejecutar la aplicación**
-
    ```bash
    cd src
    python main.py
@@ -122,7 +110,6 @@ chmod +x start.sh
 ## 🔧 Configuración
 
 ### Variables de Entorno
-
 Puedes configurar las siguientes variables de entorno:
 
 ```bash
@@ -143,13 +130,11 @@ CORS_ORIGINS=http://localhost:3000,http://localhost:8080
 ```
 
 ### Base de Datos
-
 La aplicación usa SQLite por defecto. La base de datos se crea automáticamente en `src/database/app.db`.
 
 ## 📚 Uso de la API
 
 ### Crear un pago
-
 ```bash
 curl -X POST http://localhost:5000/api/agilpay/create-payment \
   -H "Content-Type: application/json" \
@@ -168,13 +153,11 @@ curl -X POST http://localhost:5000/api/agilpay/create-payment \
 ```
 
 ### Obtener productos
-
 ```bash
 curl http://localhost:5000/api/agilpay/products
 ```
 
 ### Crear usuario
-
 ```bash
 curl -X POST http://localhost:5000/api/users \
   -H "Content-Type: application/json" \
@@ -248,7 +231,6 @@ Todas las respuestas siguen este formato:
 ### Logging
 
 Los logs se escriben en la consola con el formato:
-
 ```
 2025-01-15 10:30:45 - module_name - INFO - Mensaje
 ```

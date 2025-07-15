@@ -3,6 +3,7 @@
 ## Configuración del Entorno de Desarrollo
 
 ### Visual Studio / Visual Studio Code
+
 1. Instala la extensión de C# para tu editor
 2. Instala .NET 8.0 SDK
 3. Abre el proyecto desde la carpeta `csharp-backend`

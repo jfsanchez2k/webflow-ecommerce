@@ -14,7 +14,7 @@ Este proyecto es una versión equivalente en C# del backend Python original, des
 
 ## 📁 Estructura del Proyecto
 
-```
+``` csharp
 csharp-backend/
 ├── Controllers/           # Controladores de API
 │   ├── AgilpayController.cs
@@ -40,13 +40,16 @@ csharp-backend/
 ## 🔌 Endpoints de la API
 
 ### Productos
+
 - `GET /api/agilpay/products` - Obtiene la lista de productos
 
 ### Pagos con Agilpay
+
 - `POST /api/agilpay/create-payment` - Crea una solicitud de pago
 - `POST /api/agilpay/payment-response` - Maneja respuestas de Agilpay
 
 ### Gestión de Usuarios
+
 - `GET /api/users` - Lista todos los usuarios
 - `POST /api/users` - Crea un nuevo usuario
 - `GET /api/users/{id}` - Obtiene un usuario específico
@@ -56,21 +59,25 @@ csharp-backend/
 ## 🛠️ Instalación y Ejecución
 
 ### Prerrequisitos
+
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 ### Pasos de instalación
 
 1. **Clonar y navegar al directorio**
+
    ```bash
    cd csharp-backend
    ```
 
 2. **Restaurar dependencias**
+
    ```bash
    dotnet restore
    ```
 
 3. **Ejecutar la aplicación**
+
    ```bash
    dotnet run
    ```
@@ -82,15 +89,19 @@ csharp-backend/
 ## 📚 Documentación de la API
 
 Una vez que la aplicación esté ejecutándose, puedes acceder a la documentación interactiva de Swagger en:
+
 - `https://localhost:5001/swagger`
 
 ## 🔧 Configuración
 
 ### Base de Datos
+
 La aplicación usa SQLite por defecto. La base de datos se crea automáticamente en el directorio `database/app.db`.
 
 ### Agilpay
+
 Las credenciales de Agilpay están configuradas en `AgilpayService.cs`:
+
 - Client ID: `API-001`
 - Client Secret: `Dynapay`
 - Merchant Key: `TEST-001`
@@ -98,11 +109,13 @@ Las credenciales de Agilpay están configuradas en `AgilpayService.cs`:
 - Payment URL: `https://sandbox-webpay.agilpay.net/Payment`
 
 ### CORS
+
 CORS está habilitado para todos los orígenes en modo desarrollo. Para producción, configura políticas específicas.
 
 ## 🔍 Diferencias con la versión Python
 
-### Ventajas de la versión C#:
+### Ventajas de la versión C#
+
 - **Tipado fuerte** - Mayor seguridad en tiempo de compilación
 - **Performance** - ASP.NET Core es más rápido que Flask
 - **Async/Await nativo** - Mejor manejo de operaciones asíncronas
@@ -111,7 +124,8 @@ CORS está habilitado para todos los orígenes en modo desarrollo. Para producci
 - **Swagger integrado** - Documentación automática
 - **Logging estructurado** - Sistema de logs más robusto
 
-### Equivalencias:
+### Equivalencias
+
 - **Flask Blueprints** → **ASP.NET Core Controllers**
 - **SQLAlchemy** → **Entity Framework Core**
 - **Flask-CORS** → **CORS Middleware**
@@ -121,6 +135,7 @@ CORS está habilitado para todos los orígenes en modo desarrollo. Para producci
 ## 🧪 Testing
 
 Para ejecutar pruebas (cuando estén implementadas):
+
 ```bash
 dotnet test
 ```
@@ -128,6 +143,7 @@ dotnet test
 ## 📦 Compilación para Producción
 
 Para compilar una versión optimizada:
+
 ```bash
 dotnet publish -c Release -o ./publish
 ```

@@ -31,12 +31,14 @@ He creado una versión equivalente completa del backend de Python en C# con ASP.
 ## 🚀 Funcionalidades Implementadas
 
 ### ✅ APIs Equivalentes
+
 - **GET** `/api/agilpay/products` - Lista de productos
 - **POST** `/api/agilpay/create-payment` - Crear pago
 - **POST** `/api/agilpay/payment-response` - Respuesta de Agilpay
 - **CRUD** `/api/users` - Gestión de usuarios
 
 ### ✅ Características Adicionales
+
 - **Swagger/OpenAPI** - Documentación automática
 - **Inyección de dependencias** - Arquitectura más limpia
 - **Logging estructurado** - Mejor observabilidad
@@ -48,12 +50,14 @@ He creado una versión equivalente completa del backend de Python en C# con ASP.
 ## 🛠️ Tecnologías Utilizadas
 
 ### Backend Original (Python)
+
 - Flask
 - SQLAlchemy
 - Flask-CORS
 - requests
 
 ### Backend Migrado (C#)
+
 - ASP.NET Core 8.0
 - Entity Framework Core
 - HttpClient
@@ -72,12 +76,14 @@ He creado una versión equivalente completa del backend de Python en C# con ASP.
 ## 🔧 Instrucciones de Uso
 
 ### 1. Ejecución Rápida (Windows)
+
 ```bash
 cd csharp-backend
 ./start.bat
 ```
 
 ### 2. Ejecución Rápida (Linux/Mac)
+
 ```bash
 cd csharp-backend
 chmod +x start.sh
@@ -85,6 +91,7 @@ chmod +x start.sh
 ```
 
 ### 3. Ejecución Manual
+
 ```bash
 cd csharp-backend
 dotnet restore
@@ -92,6 +99,7 @@ dotnet run
 ```
 
 ### 4. Acceso a la Aplicación
+
 - **API**: `http://localhost:5000` o `https://localhost:5001`
 - **Swagger**: `https://localhost:5001/swagger`
 - **Documentación**: `https://localhost:5001/`
@@ -99,6 +107,7 @@ dotnet run
 ## 🔍 Verificación de Funcionalidad
 
 ### Test de Endpoints
+
 ```bash
 # Productos
 curl http://localhost:5000/api/agilpay/products
@@ -114,7 +123,7 @@ curl http://localhost:5000/api/users
 
 ## 📁 Estructura del Proyecto
 
-```
+``` text
 csharp-backend/
 ├── Controllers/          # Controladores (equivalente a routes/)
 ├── Data/                # Contexto de BD (equivalente a models/)
@@ -130,23 +139,27 @@ csharp-backend/
 ## 🎯 Ventajas de la Migración
 
 ### Performance
+
 - **5x más rápido** en requests por segundo
 - **Menor consumo de memoria**
 - **Startup más rápido**
 
 ### Desarrollo
+
 - **IntelliSense completo** con tipado fuerte
 - **Debugging avanzado** en Visual Studio/VS Code
 - **Refactoring seguro** con análisis estático
 - **Testing integrado** con frameworks nativos
 
 ### Operaciones
+
 - **Mejor observabilidad** con logging estructurado
 - **Métricas integradas** con Application Insights
 - **Despliegue simplificado** con contenedores
 - **Escalabilidad horizontal** nativa
 
 ### Ecosistema
+
 - **NuGet** - Gestor de paquetes robusto
 - **Entity Framework** - ORM más maduro
 - **Azure integrado** - Despliegue nativo en la nube
